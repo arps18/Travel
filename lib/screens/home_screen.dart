@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel_ui_starter/models/destination_model.dart';
+import 'package:flutter_travel_ui_starter/widgets/destination_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,23 +19,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildIcon(int index) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         setState(() {
-          _selectedIndex=index;
+          _selectedIndex = index;
         });
-       
       },
-          child: Container(
+      child: Container(
         height: 60,
         width: 60,
         decoration: BoxDecoration(
-          color: _selectedIndex == index ? Theme.of(context).accentColor : Color(0xFFE7EBEE),
+          color: _selectedIndex == index
+              ? Theme.of(context).accentColor
+              : Color(0xFFE7EBEE),
           borderRadius: BorderRadius.circular(30),
         ),
         child: Icon(
           _icons[index],
           size: 25,
-          color: _selectedIndex == index? Theme.of(context).primaryColor : Color(0xFFB4C1C4),
+          color: _selectedIndex == index
+              ? Theme.of(context).primaryColor
+              : Color(0xFFB4C1C4),
         ),
       ),
     );
@@ -66,6 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                   .toList(),
             ),
+            SizedBox(height: 20,),
+            DestinationCarousel(),
           ],
         ),
       ),
