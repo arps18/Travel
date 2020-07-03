@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel_ui_starter/models/destination_model.dart';
 import 'package:flutter_travel_ui_starter/widgets/destination_carousel.dart';
+import 'package:flutter_travel_ui_starter/widgets/hotel_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  int _currentTab = 0;
   List<IconData> _icons = [
     FontAwesomeIcons.plane,
     FontAwesomeIcons.bed,
@@ -71,10 +73,49 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                   .toList(),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             DestinationCarousel(),
+            SizedBox(
+              height: 20,
+            ),
+            HotelCarousel(),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentTab,
+        onTap: (int value){
+          setState(() {
+            _currentTab= value;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.search,
+              size: 30,
+            ),
+            title: SizedBox.shrink(),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.fastfood,
+              size: 30,
+            ),
+            title: SizedBox.shrink(),
+          ),
+          BottomNavigationBarItem(
+            icon: CircleAvatar(
+              radius: 15,
+              backgroundImage: NetworkImage(
+                  'https://pbs.twimg.com/profile_images/1176860036456300545/RoQXSpya_400x400.jpg',
+                  ),
+            ),
+            title: SizedBox.shrink(),
+          ),
+        ],
       ),
     );
   }
